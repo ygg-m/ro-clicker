@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { GameProvider } from "./Context/GameContext";
+import { GameProvider } from "./Context/GameContext/GameContext";
 import "./Styles/index.css";
 
 const root = ReactDOM.createRoot(

@@ -120,10 +120,10 @@ import { armorList, weaponList } from "./EquipList";
 
 
   export const CurrentDefault = {
-    enemy: {
+    target: {
       id: 1002,
       healthPoints: 50,
     },
     map: { id: 0, enemiesDefeated: 0 },
-    character: CharacterDefault
+    character: CharacterDefault,
   };

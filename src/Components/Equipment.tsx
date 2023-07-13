@@ -1,16 +1,16 @@
-import { useGame } from "@/Context/GameContext";
+import { useGame } from "@/Context/GameContext/GameContext";
 import { EquipmentSlotTypes } from "@/Types/Character/Equipment";
 import { DraggableWindow } from "./DraggableWindow";
 
 const PlayerImage = () => {
   return (
-    <div className="relative z-0 bg-lines border-l border-r border-gray-400">
+    <div className="bg-lines relative z-0 border-l border-r border-gray-400">
       <img
         src={require("@/Assets/Player/Novice/front.png")}
         alt=""
         className="z-10 h-60 w-60 object-cover"
       />
-      <div className="absolute bottom-[66px] -z-10 left-0 right-0 mx-auto h-6 w-10 rounded-[100%] bg-gray-900 bg-opacity-20 blur-[2px]" />
+      <div className="absolute bottom-[66px] left-0 right-0 -z-10 mx-auto h-6 w-10 rounded-[100%] bg-gray-900 bg-opacity-20 blur-[2px]" />
     </div>
   );
 };
@@ -30,16 +30,18 @@ const EmptySlot = ({ name }: { name: string }) => (
 );
 
 const EquipmentSlot = ({ name, equipment }: EquipmentSlotProps) => {
-  const {handleDetailWindow} = useGame()
-  
+  const { handleDetailWindow } = useGame();
+
   if (!equipment) return <EmptySlot name={name} />;
 
   const { sprite, name: equipName, cardSlots } = equipment?.itemData;
   const { upgradeLevel } = equipment;
 
-
   return (
-    <div className="relative cursor-pointer border-b border-gray-400 hover:bg-gray-100" onContextMenu={(e) => handleDetailWindow(e, equipment)}>
+    <div
+      className="relative cursor-pointer border-b border-gray-400 hover:bg-gray-100"
+      onContextMenu={(e) => handleDetailWindow(e, equipment)}
+    >
       <div className="absolute z-10 flex h-full w-full items-center gap-3 py-2 text-sm">
         <img src={sprite} alt="" className="pb-1 pl-1" />
         <div className="flex flex-wrap gap-1">
@@ -61,7 +63,7 @@ export const Equipment = () => {
   const { handR, body } = useGame().current.character.equipment;
 
   return (
-    <DraggableWindow title="Equipment" originX={450} originY={0}>
+    <DraggableWindow title="Equipment" originX={0} originY={450}>
       <div className="grid grid-cols-[0.4fr_0.2fr_0.4fr]">
         <div className="grid grid-rows-5 px-2">
           <EquipmentSlot name="Head (Top)" />

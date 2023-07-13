@@ -4,13 +4,13 @@ import { ItemTypes } from "./Item";
 
 export interface CurrentTypes {
   character: Character;
-  enemy: {
+  target: {
     id: number;
     healthPoints: number;
   };
   map: {
     id: number;
-    enemiesDefeated: number
+    enemiesDefeated: number;
   };
 }
 

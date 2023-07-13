@@ -1,4 +1,4 @@
-import { useGame } from "@/Context/GameContext";
+import { useGame } from "@/Context/GameContext/GameContext";
 import { baseExpTable, firstJobExpTable } from "@/Data/ExperienceTables";
 import { jobList } from "@/Data/Jobs";
 import { JobData } from "@/Types/Job";
@@ -49,7 +49,10 @@ const Level = ({ name, value, exp, expToLevel }: LevelProps) => {
   const percentage = Math.floor((exp / expToLevel) * 100);
 
   return (
-    <div className="grid grid-cols-[.4fr_1fr] items-center gap-2 hover:bg-gray-300 tooltip" data-tip={`${exp} / ${expToLevel} (${percentage}%)`}>
+    <div
+      className="tooltip grid grid-cols-[.4fr_1fr] items-center gap-2 hover:bg-gray-300"
+      data-tip={`${exp} / ${expToLevel} (${percentage}%)`}
+    >
       <div>
         {name} Lv. {value}
       </div>
@@ -83,52 +86,80 @@ const Zeny = ({ value }: { value: number }) => {
 };
 
 export const BasicInfo = () => {
-  const {name, job, baseLevel, baseExp, jobLevel, jobExp} = useGame().current.character
-  const {healthPoints, spiritPoints, totalHealthPoints, totalSpiritPoints, weight, totalWeight, zeny} = useGame().current.character.stats.baseStats
+  const { name, job, baseLevel, baseExp, jobLevel, jobExp } =
+    useGame().current.character;
+  const {
+    healthPoints,
+    spiritPoints,
+    totalHealthPoints,
+    totalSpiritPoints,
+    weight,
+    totalWeight,
+    zeny,
+  } = useGame().current.character.stats.baseStats;
 
-  const { name: jobName } = jobList.find(e => e.id === job) as JobData || "Unknown"
-  const baseExpToLevel = baseExpTable[baseLevel]
-  const jobExpToLevel = firstJobExpTable[jobLevel]
+  const { name: jobName } =
+    (jobList.find((e) => e.id === job) as JobData) || "Unknown";
+  const baseExpToLevel = baseExpTable[baseLevel];
+  const jobExpToLevel = firstJobExpTable[jobLevel];
 
   return (
-      <DraggableWindow title="Basic Info" originX={0} originY={0}> 
-        <article className="grid grid-cols-[1fr_0.5fr]">
-          <div className="flex flex-col">
-            <div className="grid grid-cols-[0.5fr_1fr] gap-2 p-1 px-3">
-              <div className="flex flex-col text-sm">
-                <span>{name}</span>
-                <span>{jobName}</span>
-              </div>
-
-              <div className="grid gap-1 text-sm">
-                <Parameter name="HP" value={healthPoints} totalValue={totalHealthPoints} />
-                <Parameter name="SP" value={spiritPoints} totalValue={totalSpiritPoints} />
-              </div>
+    <DraggableWindow title="Basic Info" originX={0} originY={0}>
+      <article className="grid grid-cols-[1fr_0.5fr]">
+        <div className="flex flex-col">
+          <div className="grid grid-cols-[0.5fr_1fr] gap-2 p-1 px-3">
+            <div className="flex flex-col text-sm">
+              <span>{name}</span>
+              <span>{jobName}</span>
             </div>
 
-            <div className="p-1 px-2 text-sm">
-              <div className="rounded-lg bg-gray-200 p-1 px-2">
-                <Level name="Base" value={baseLevel} exp={baseExp} expToLevel={baseExpToLevel} />
-                <Level name="Job" value={jobLevel} exp={jobExp} expToLevel={jobExpToLevel} />
-              </div>
-            </div>
-
-            <div className="bg-lines border-t border-gray-400 p-1 px-3 text-sm">
-              <Weight value={weight} totalValue={totalWeight} />
-              <Zeny value={zeny} />
+            <div className="grid gap-1 text-sm">
+              <Parameter
+                name="HP"
+                value={healthPoints}
+                totalValue={totalHealthPoints}
+              />
+              <Parameter
+                name="SP"
+                value={spiritPoints}
+                totalValue={totalSpiritPoints}
+              />
             </div>
           </div>
-          <div className="bg-lines grid grid-cols-2 gap-2 border-l border-gray-400 p-2 text-sm">
-            <GrayButton name="status" />
-            <GrayButton name="option" />
-            <GrayButton name="items" />
-            <GrayButton name="equip" />
-            <GrayButton name="skill" />
-            <GrayButton name="map" />
-            <GrayButton name="comm" />
-            <GrayButton name="friend" />
+
+          <div className="p-1 px-2 text-sm">
+            <div className="rounded-lg bg-gray-200 p-1 px-2">
+              <Level
+                name="Base"
+                value={baseLevel}
+                exp={baseExp}
+                expToLevel={baseExpToLevel}
+              />
+              <Level
+                name="Job"
+                value={jobLevel}
+                exp={jobExp}
+                expToLevel={jobExpToLevel}
+              />
+            </div>
           </div>
-        </article>
-      </DraggableWindow>
+
+          <div className="bg-lines border-t border-gray-400 p-1 px-3 text-sm">
+            <Weight value={weight} totalValue={totalWeight} />
+            <Zeny value={zeny} />
+          </div>
+        </div>
+        <div className="bg-lines grid grid-cols-2 gap-2 border-l border-gray-400 p-2 text-sm">
+          <GrayButton name="status" />
+          <GrayButton name="option" />
+          <GrayButton name="items" />
+          <GrayButton name="equip" />
+          <GrayButton name="skill" />
+          <GrayButton name="map" />
+          <GrayButton name="comm" />
+          <GrayButton name="friend" />
+        </div>
+      </article>
+    </DraggableWindow>
   );
 };

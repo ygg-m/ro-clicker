@@ -1,6 +1,6 @@
 // import PoringIdle from "@/Assets/Enemy/Idle/1002.gif";
 
-export const enemyList = [
+export const targetList = [
   {
     id: 1002,
     name: "Poring",
