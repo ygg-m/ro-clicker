@@ -1,6 +1,7 @@
 import { ArrowIcon } from "@/Assets/UI";
 import { useGame } from "@/Context/GameContext/GameContext";
 import { getBaseStatCost } from "@/Helpers/getBaseStatCost";
+import { useEffect } from "react";
 import { DraggableWindow } from "./DraggableWindow";
 
 interface BaseStatProps {
@@ -68,73 +69,74 @@ export const Status = () => {
     fleeRate,
     attackSpeed,
   } = sideStats;
+
   return (
     <section className="grid w-full max-w-md overflow-hidden rounded-lg bg-gray-50 text-gray-800 outline outline-1 outline-gray-800">
       <DraggableWindow title="Status" originX={0} originY={215}>
-      <article className="grid grid-cols-[1fr_.8fr_.8fr] grid-rows-6 gap-2 p-2 px-3">
-        <BaseStat name="Str" value={strength} bonusValue={bonus.strength} />
-        <SubStat
-          name="Atk"
-          value={attack}
-          bonusValue={sideStats.bonus.attack}
-        />
-        <SubStat
-          name="Def"
-          value={defense}
-          bonusValue={sideStats.bonus.defense}
-        />
+        <article className="grid grid-cols-[1fr_.8fr_.8fr] grid-rows-6 gap-2 p-2 px-3">
+          <BaseStat name="Str" value={strength} bonusValue={bonus.strength} />
+          <SubStat
+            name="Atk"
+            value={attack}
+            bonusValue={sideStats.bonus.attack}
+          />
+          <SubStat
+            name="Def"
+            value={defense}
+            bonusValue={sideStats.bonus.defense}
+          />
 
-        <BaseStat name="Agi" value={agility} bonusValue={bonus.agility} />
-        <SubStat
-          name="Matk"
-          value={magicAttack}
-          bonusValue={sideStats.bonus.magicAttack}
-        />
-        <SubStat
-          name="Mdef"
-          value={magicDefense}
-          bonusValue={sideStats.bonus.magicDefense}
-        />
+          <BaseStat name="Agi" value={agility} bonusValue={bonus.agility} />
+          <SubStat
+            name="Matk"
+            value={magicAttack}
+            bonusValue={sideStats.bonus.magicAttack}
+          />
+          <SubStat
+            name="Mdef"
+            value={magicDefense}
+            bonusValue={sideStats.bonus.magicDefense}
+          />
 
-        <BaseStat name="Vit" value={vitality} bonusValue={bonus.vitality} />
-        <SubStat
-          name="Hit"
-          value={hitRate}
-          bonusValue={sideStats.bonus.hitRate}
-        />
-        <SubStat
-          name="Flee"
-          value={fleeRate}
-          bonusValue={sideStats.bonus.fleeRate}
-        />
+          <BaseStat name="Vit" value={vitality} bonusValue={bonus.vitality} />
+          <SubStat
+            name="Hit"
+            value={hitRate}
+            bonusValue={sideStats.bonus.hitRate}
+          />
+          <SubStat
+            name="Flee"
+            value={fleeRate}
+            bonusValue={sideStats.bonus.fleeRate}
+          />
 
-        <BaseStat
-          name="Int"
-          value={intelligence}
-          bonusValue={bonus.intelligence}
-        />
-        <SubStat
-          name="Critical"
-          value={critRate}
-          bonusValue={sideStats.bonus.critRate}
-        />
-        <SubStat
-          name="Aspd"
-          value={attackSpeed}
-          bonusValue={sideStats.bonus.attackSpeed}
-        />
+          <BaseStat
+            name="Int"
+            value={intelligence}
+            bonusValue={bonus.intelligence}
+          />
+          <SubStat
+            name="Critical"
+            value={critRate}
+            bonusValue={sideStats.bonus.critRate}
+          />
+          <SubStat
+            name="Aspd"
+            value={attackSpeed}
+            bonusValue={sideStats.bonus.attackSpeed}
+          />
 
-        <BaseStat name="Dex" value={dexterity} bonusValue={bonus.dexterity} />
-        <div className="col-span-2" />
+          <BaseStat name="Dex" value={dexterity} bonusValue={bonus.dexterity} />
+          <div className="col-span-2" />
 
-        <BaseStat name="Luk" value={luck} bonusValue={bonus.luck} />
-        <div className="col-span-2">
-          <div className="flex justify-between border-b border-gray-400">
-            <div className="font-bold text-blue-700">Status Point</div>
-            <span>48</span>
+          <BaseStat name="Luk" value={luck} bonusValue={bonus.luck} />
+          <div className="col-span-2">
+            <div className="flex justify-between border-b border-gray-400">
+              <div className="font-bold text-blue-700">Status Point</div>
+              <span>48</span>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
       </DraggableWindow>
     </section>
   );

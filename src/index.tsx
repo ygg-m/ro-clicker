@@ -7,13 +7,15 @@ import "./Styles/index.css";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+// strict mode removed to prevent double render
+{/* <React.StrictMode> */}
 root.render(
-  <React.StrictMode>
     <GameProvider>
       <App />
     </GameProvider>
-  </React.StrictMode>
 );
+  {/* </React.StrictMode> */}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

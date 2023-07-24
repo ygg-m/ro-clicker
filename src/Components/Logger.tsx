@@ -4,7 +4,7 @@ import { useGame } from "@/Context/GameContext/GameContext";
 import { formatTime } from "@/Utils/formatTime";
 
 export const Logger = () => {
-  const { logs, setLogs } = useGame();
+  const { logs } = useGame();
   const logRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
