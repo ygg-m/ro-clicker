@@ -6,6 +6,7 @@ import { Logger } from "./Components/Logger";
 import { Player } from "./Components/Player";
 import { Status } from "./Components/Status";
 import { useGame } from "./Context/GameContext/GameContext";
+import useMainCharacterStore from "./Stores/mainCharacter";
 
 function App() {
   const {
@@ -20,6 +21,9 @@ function App() {
     logs,
     updateStats,
   } = useGame();
+
+  const mainChracter = useMainCharacterStore(state => state.mainCharacter)
+
 
   return (
     <div className="grid grid-cols-2">
