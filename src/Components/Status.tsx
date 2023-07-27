@@ -2,6 +2,7 @@ import { ArrowIcon } from "@/Assets/UI";
 import { getBaseStatCost } from "@/Helpers/getBaseStatCost";
 import useGameStore from "@/Stores/game";
 import { DraggableWindow } from "./DraggableWindow";
+import { MenuHeader } from "./MenuHeader";
 
 interface BaseStatProps {
   name: string;
@@ -57,9 +58,10 @@ const SubStat = ({ name, value, bonusValue }: SubStatProps) => {
 export const Status = () => {
   const { mainStats, sideStats } = useGameStore(state => state.mainCharacter.stats)
 
+  // <DraggableWindow title="Status" originX={0} originY={215}>
   return (
-    <section className="grid w-full max-w-md overflow-hidden rounded-lg bg-gray-50 text-gray-800 outline outline-1 outline-gray-800">
-      <DraggableWindow title="Status" originX={0} originY={215}>
+    <section className="">
+        <MenuHeader name="Stats"/>
         <article className="grid grid-cols-[1fr_.8fr_.8fr] grid-rows-6 gap-2 p-2 px-3">
           <BaseStat name="Str" value={mainStats.strength} bonusValue={mainStats.bonus.strength} />
           <SubStat
@@ -124,7 +126,7 @@ export const Status = () => {
             </div>
           </div>
         </article>
-      </DraggableWindow>
     </section>
   );
 };
+// </DraggableWindow>

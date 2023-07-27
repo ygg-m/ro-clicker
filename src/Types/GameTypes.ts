@@ -36,5 +36,19 @@ export interface DetailData {
 
 export interface MapTypes {
   id: number;
+  data: MapDataTypes;
   enemiesDefeated: number;
+}
+
+interface MapDataTypes {
+  id: number,
+  nameID: string,
+  name: string,
+  image: string,
+  monsterList: 
+      {
+          id: number,
+          quantity: number,
+          respawnTime: number,
+      }[]
 }

@@ -6,6 +6,7 @@ import { EnemyTypes } from "@/Types/enemy";
 import { targetList } from "@/Data/EnemyList";
 import { getStatusATK, getWeaponATK } from "@/Helpers/getStats";
 import { MapTypes } from "@/Types/GameTypes";
+import { mapList } from "@/Data/Maps";
 
 type State = {
   // Current Game Stats
@@ -30,6 +31,7 @@ type State = {
 
   // Map
   map: MapTypes;
+  setMap: (newMap: MapTypes) => void;
 
   // Utils
   logs: LogEntry[];
@@ -47,7 +49,7 @@ const useGameStore = create<State>()(
       // Current Game Stats
       current: {
         mainCharacter: CharacterDefault,
-        map: { id: 0, enemiesDefeated: 0 },
+        map: { id: 0, data: mapList[0], enemiesDefeated: 0 },
       },
 
       // Main Character
@@ -136,11 +138,14 @@ const useGameStore = create<State>()(
       },
 
       // Map
-      map: { id: 0, enemiesDefeated: 0 },
+      map: { id: 0, data: mapList[0], enemiesDefeated: 0 },
+      setMap: (newMap) => {
+
+      },
 
       // Utils
       logs: [],
-      log: (message: string) => {
+      log: (message) => {
         const entry: LogEntry = {
           timestamp: new Date(),
           message,

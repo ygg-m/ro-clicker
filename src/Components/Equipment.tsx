@@ -2,6 +2,7 @@ import useGameStore from "@/Stores/game";
 import usePageStore from "@/Stores/page";
 import { EquipmentSlotTypes } from "@/Types/Character/Equipment";
 import { DraggableWindow } from "./DraggableWindow";
+import { MenuHeader } from "./MenuHeader";
 
 const PlayerImage = () => {
   return (
@@ -63,8 +64,11 @@ const EquipmentSlot = ({ name, equipment }: EquipmentSlotProps) => {
 export const Equipment = () => {
   const { handR, body } = useGameStore(state => state.current.mainCharacter.equipment)
 
+  // <DraggableWindow title="Equipment" originX={0} originY={450}>
   return (
-    <DraggableWindow title="Equipment" originX={0} originY={450}>
+    <article>
+        <MenuHeader name="Equipment"/>
+
       <div className="grid grid-cols-[0.4fr_0.2fr_0.4fr]">
         <div className="grid grid-rows-5 px-2">
           <EquipmentSlot name="Head (Top)" />
@@ -84,6 +88,9 @@ export const Equipment = () => {
           <EquipmentSlot name="Left Accessory" />
         </div>
       </div>
-    </DraggableWindow>
+    </article>
+
   );
 };
+
+// </DraggableWindow>

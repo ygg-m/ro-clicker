@@ -13,8 +13,10 @@ function App() {
   const game = useGameStore((state) => state);
   const page = usePageStore(state => state)
 
+  console.log(game.map.data)
+
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-[28rem_1fr]">
       {page.detailWindows.map((window, i) =>
           window.equipData ? (
             <DetailWindow
@@ -34,14 +36,15 @@ function App() {
             />
           )
         )}
-      <BasicInfo />
-      <Status />
-      <Equipment />
-      <div className="z-10 flex min-h-screen flex-col items-center justify-center overflow-hidden">
-        <button className="btn" onClick={() => game.updateStats()}>update</button>
-      
-        <Logger />
-        <div className="flex gap-2">
+
+      <div className="flex flex-col bg-white text-gray-800 z-50">
+        <BasicInfo />
+        <Status />
+        <Equipment />
+      </div>
+
+      <div className="z-10 relative flex min-h-screen flex-col items-center justify-between overflow-hidden">
+        <div className="flex gap-6 w-full items-center justify-center p-4">
           <Player />
           <div onClick={() => game.basicAttack()}>
             <Enemy />
@@ -85,6 +88,10 @@ function App() {
             </div>
           </div>
         </div>
+
+        <Logger />
+
+        <img className="absolute -z-10 w-full h-full blur-xl opacity-80 object-cover scale-125" src={game.map.data.image} />
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import useGameStore from "@/Stores/game";
 import { JobData } from "@/Types/Job";
 import { DraggableWindow } from "./DraggableWindow";
 import { GrayButton } from "./GrayButton";
+import { MenuHeader } from "./MenuHeader";
 
 interface ParameterProps {
   name: string;
@@ -87,6 +88,7 @@ const Zeny = ({ value }: { value: number }) => {
 export const BasicInfo = () => {
   const { name, job, baseLevel, baseExp, jobLevel, jobExp } =
     useGameStore(state => state.current.mainCharacter)
+
   const {
     healthPoints,
     spiritPoints,
@@ -102,17 +104,19 @@ export const BasicInfo = () => {
   const baseExpToLevel = baseExpTable[baseLevel];
   const jobExpToLevel = firstJobExpTable[jobLevel];
 
+  // <DraggableWindow title="Basic Info" originX={0} originY={0}>
   return (
-    <DraggableWindow title="Basic Info" originX={0} originY={0}>
-      <article className="grid grid-cols-[1fr_0.5fr]">
+      <article className="">
+        <MenuHeader name="Basic Info"/>
+        <div className="grid grid-cols-[1fr_0.5fr]">
         <div className="flex flex-col">
-          <div className="grid grid-cols-[0.5fr_1fr] gap-2 p-1 px-3">
+          <div className="grid grid-cols-[0.5fr_1fr] gap-2 p-2 px-3">
             <div className="flex flex-col text-sm">
               <span>{name}</span>
               <span>{jobName}</span>
             </div>
 
-            <div className="grid gap-1 text-sm">
+            <div className="grid gap-2 text-sm">
               <Parameter
                 name="HP"
                 value={healthPoints}
@@ -158,7 +162,8 @@ export const BasicInfo = () => {
           <GrayButton name="comm" />
           <GrayButton name="friend" />
         </div>
+        </div>
       </article>
-    </DraggableWindow>
   );
+  // </DraggableWindow>
 };
