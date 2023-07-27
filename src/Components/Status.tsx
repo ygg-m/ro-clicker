@@ -55,80 +55,68 @@ const SubStat = ({ name, value, bonusValue }: SubStatProps) => {
 };
 
 export const Status = () => {
-  const { mainStats, sideStats } = useGameStore(state => state.current.mainCharacter.stats)
-  const { strength, agility, vitality, intelligence, dexterity, luck, bonus } =
-    mainStats;
-  const {
-    attack,
-    magicAttack,
-    hitRate,
-    critRate,
-    defense,
-    magicDefense,
-    fleeRate,
-    attackSpeed,
-  } = sideStats;
+  const { mainStats, sideStats } = useGameStore(state => state.mainCharacter.stats)
 
   return (
     <section className="grid w-full max-w-md overflow-hidden rounded-lg bg-gray-50 text-gray-800 outline outline-1 outline-gray-800">
       <DraggableWindow title="Status" originX={0} originY={215}>
         <article className="grid grid-cols-[1fr_.8fr_.8fr] grid-rows-6 gap-2 p-2 px-3">
-          <BaseStat name="Str" value={strength} bonusValue={bonus.strength} />
+          <BaseStat name="Str" value={mainStats.strength} bonusValue={mainStats.bonus.strength} />
           <SubStat
             name="Atk"
-            value={attack}
+            value={sideStats.attack}
             bonusValue={sideStats.bonus.attack}
           />
           <SubStat
             name="Def"
-            value={defense}
+            value={sideStats.defense}
             bonusValue={sideStats.bonus.defense}
           />
 
-          <BaseStat name="Agi" value={agility} bonusValue={bonus.agility} />
+          <BaseStat name="Agi" value={mainStats.agility} bonusValue={mainStats.bonus.agility} />
           <SubStat
             name="Matk"
-            value={magicAttack}
+            value={sideStats.magicAttack}
             bonusValue={sideStats.bonus.magicAttack}
           />
           <SubStat
             name="Mdef"
-            value={magicDefense}
+            value={sideStats.magicDefense}
             bonusValue={sideStats.bonus.magicDefense}
           />
 
-          <BaseStat name="Vit" value={vitality} bonusValue={bonus.vitality} />
+          <BaseStat name="Vit" value={mainStats.vitality} bonusValue={mainStats.bonus.vitality} />
           <SubStat
             name="Hit"
-            value={hitRate}
+            value={sideStats.hitRate}
             bonusValue={sideStats.bonus.hitRate}
           />
           <SubStat
             name="Flee"
-            value={fleeRate}
+            value={sideStats.fleeRate}
             bonusValue={sideStats.bonus.fleeRate}
           />
 
           <BaseStat
             name="Int"
-            value={intelligence}
-            bonusValue={bonus.intelligence}
+            value={mainStats.intelligence}
+            bonusValue={mainStats.bonus.intelligence}
           />
           <SubStat
             name="Critical"
-            value={critRate}
+            value={sideStats.critRate}
             bonusValue={sideStats.bonus.critRate}
           />
           <SubStat
             name="Aspd"
-            value={attackSpeed}
+            value={sideStats.attackSpeed}
             bonusValue={sideStats.bonus.attackSpeed}
           />
 
-          <BaseStat name="Dex" value={dexterity} bonusValue={bonus.dexterity} />
+          <BaseStat name="Dex" value={mainStats.dexterity} bonusValue={mainStats.bonus.dexterity} />
           <div className="col-span-2" />
 
-          <BaseStat name="Luk" value={luck} bonusValue={bonus.luck} />
+          <BaseStat name="Luk" value={mainStats.luck} bonusValue={mainStats.bonus.luck} />
           <div className="col-span-2">
             <div className="flex justify-between border-b border-gray-400">
               <div className="font-bold text-blue-700">Status Point</div>

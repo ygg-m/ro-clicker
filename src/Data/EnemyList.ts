@@ -88,8 +88,8 @@ export const targetList = [
     ],
   },
   {
-    id: 1002,
-    name: "Poring",
+    id: 1007,
+    name: "Fabre",
     level: 1,
     race: "Plant",
     property: "Water 1",

@@ -38,11 +38,9 @@ function App() {
       <Status />
       <Equipment />
       <div className="z-10 flex min-h-screen flex-col items-center justify-center overflow-hidden">
-        <button onClick={() => game.updateStats()}>update</button>
-        
-
+        <button className="btn" onClick={() => game.updateStats()}>update</button>
+      
         <Logger />
-
         <div className="flex gap-2">
           <Player />
           <div onClick={() => game.basicAttack()}>
