@@ -15,7 +15,7 @@ export const Player = () => {
 
   return (
     <div
-      className="relative flex flex-col items-center"
+      className="relative flex h-full flex-col items-center justify-between"
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
     >
@@ -38,14 +38,14 @@ export const Player = () => {
         ></progress>
       </div>
       <div
-        className={`place-items-centerp-2 grid h-32 w-32 overflow-hidden duration-200 ${
+        className={`place-items-center p-2 grid h-32 w-32 duration-200 ${
           isHovered ? "brightness-125" : ""
         }`}
       >
         <img
           src={require("@/Assets/Player/Novice/idle-action.gif")}
           alt="Player Name"
-          className="scale-[2.3]"
+          className="object-none -mb-12"
         />
       </div>
       <div className="absolute bottom-7 -z-[1] h-6 w-16 rounded-[100%] bg-neutral opacity-30 blur-sm" />
