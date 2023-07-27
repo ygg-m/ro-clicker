@@ -22,32 +22,42 @@ export const Logger = () => {
       logElement?.scrollTo({ top: logElement.scrollHeight });
   }, [logs]);
 
-  const Tab = ({ name, active }: { name: string, active?: boolean }) => (
-    <div className={`bg-neutral cursor-pointer bg-opacity-80 px-2 rounded-t hover:opacity-100 ${!active && 'opacity-60'}`}>{name}</div>
-  )
+  const Tab = ({ name, active }: { name: string; active?: boolean }) => (
+    <div
+      className={`cursor-pointer rounded-t bg-neutral bg-opacity-80 px-2 hover:opacity-100 ${
+        !active && "opacity-60"
+      }`}
+    >
+      {name}
+    </div>
+  );
+  // todo: add function hide log
+  // todo: add function & button to clear log
 
   return (
     <article className="w-full">
       <div className="flex justify-between">
         <div className="flex gap-1 px-2">
-          <span className="text-sm px-2 opacity-70">Logger</span>
-          <Tab name="General" active /> 
-          <Tab name="Combat" /> 
-          <Tab name="Item" /> 
-          <Tab name="Status" /> 
+          <span className="px-2 text-sm opacity-70">Logger</span>
+          <Tab name="General" active />
+          <Tab name="Combat" />
+          <Tab name="Item" />
+          <Tab name="Status" />
         </div>
 
-        <div className="flex items-center cursor-pointer bg-neutral bg-opacity-80 px-2 rounded-t hover:opacity-100 opacity-60"><ChevronDown className="h-4 w-4" /></div>
+        <div className="flex cursor-pointer items-center rounded-t bg-neutral bg-opacity-80 px-2 opacity-60 hover:opacity-100">
+          <ChevronDown className="h-4 w-4" />
+        </div>
       </div>
-    <div
-      ref={logRef}
-      className="bg-opacity-80 flex h-64 flex-col overflow-y-auto bg-neutral p-2 duration-200"
-    >
-      {logs.map((log) => {
-        const date = formatTime(log.timestamp);
-        return <span key={uuid()}>{`${date} | ${log.message}`}</span>;
-      })}
-    </div>
+      <div
+        ref={logRef}
+        className="flex h-64 flex-col overflow-y-auto bg-neutral bg-opacity-80 p-2 duration-200"
+      >
+        {logs.map((log) => {
+          const date = formatTime(log.timestamp);
+          return <span key={uuid()}>{`${date} | ${log.message}`}</span>;
+        })}
+      </div>
     </article>
   );
 };

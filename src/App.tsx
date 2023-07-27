@@ -19,6 +19,12 @@ function App() {
     game.updateStats();
   }, []);
 
+  // todo: show map
+  // todo: show skill bar (empty for now)
+  // todo: show enemy stats (if have wizzard skill or usable item)
+  // todo: inventory window
+  // todo: skill window
+
   return (
     <div className="grid grid-cols-[28rem_1fr]">
       {/* Page Modals */}

@@ -12,8 +12,8 @@ type State = {
   // Current Game Stats
   current: {
     mainCharacter: Character;
-    map: MapTypes
-  }
+    map: MapTypes;
+  };
 
   // Main Character
   mainCharacter: Character;
@@ -43,6 +43,25 @@ interface LogEntry {
   message: string;
 }
 
+// TODO: sepparate logs between Combat, Items, Status
+// todo: different colors between logs
+// todo: primary, secondary, etc, colors
+// todo: add enemy attack based on their attack speed
+// todo: add options to fight or flee
+// todo: remove enemy when it dies, rolls another from same map
+// todo: add exp when enemy dies
+// todo: add loot when enemy dies
+// todo: multiple enemies if don't kill faster
+// todo: basic attack delay based on ASPD
+// todo: auto-attack option
+// todo: use Status Point to increase stats
+// todo: add basic skills (unlock stuff)
+// todo: add first aid (recover hp)
+// todo: add character death (lose XP, start with less hp)
+// todo: add escape from battle
+// todo: add delay between encounters
+// todo: add fake death (runs from enemy after a delay)
+
 const useGameStore = create<State>()(
   persist(
     (set) => ({
@@ -55,7 +74,7 @@ const useGameStore = create<State>()(
       // Main Character
       mainCharacter: CharacterDefault,
 
-      // TODO: Update Stats
+      // TODO: Update other Stats
 
       // actions
       basicAttack: () => {

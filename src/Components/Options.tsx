@@ -4,6 +4,7 @@ import { MenuHeader } from "./MenuHeader";
 export const Options = () => {
   const page = usePageStore((state) => state);
 
+  // todo: add tooltips to options
   return (
     <>
       {page.isOptionsMenuOpen && (
