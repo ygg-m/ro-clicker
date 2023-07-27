@@ -48,9 +48,9 @@ export const Player = () => {
           className="scale-[2.3]"
         />
       </div>
-      <div className="absolute bottom-[22px] -z-[1] h-6 w-16 rounded-[100%] bg-neutral opacity-30" />
+      <div className="absolute bottom-7 -z-[1] h-6 w-16 rounded-[100%] bg-neutral opacity-30" />
       <span
-        className={`text-shadow font-semibold duration-200 ${
+        className={`text-shadow pt-2 font-semibold duration-200 ${
           isHovered || showName ? "opacity-100" : "opacity-0"
         }`}
       >
