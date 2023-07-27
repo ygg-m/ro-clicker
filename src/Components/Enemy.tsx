@@ -31,7 +31,7 @@ export const Enemy = () => {
           src={idleSprite}
           alt=""
           onClick={() => game.basicAttack()}
-          className="attack rounded-lg duration-200 hover:brightness-125 -mb-1"
+          className="cursor-attack -mb-1 rounded-lg duration-200 hover:brightness-125"
         />
       </div>
       <div

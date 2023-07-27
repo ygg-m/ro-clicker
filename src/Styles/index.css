@@ -16,7 +16,7 @@ button {
   cursor: url('../Assets/Cursor/link_select.gif'), auto;
 }
 
-attack {
+.cursor-attack {
   cursor: url('../Assets/Cursor/attack.gif'), auto;
 }
 
