@@ -1,6 +1,7 @@
 import { create } from "zustand"
 import { EquipmentSlotTypes } from "@/Types/Character/Equipment";
 import { ItemTypes } from "@/Types/Item";
+import {useRef} from "react"
 
 interface DetailWindowData {
   x: number;
@@ -24,18 +25,20 @@ interface State {
   isStatsAbovePlayerActive: boolean;
   showStatsAbovePlayer: () => void;
   hideStatsAbovePlayer: () => void;
-  toggleStatsAbovePlayer: () => void
+  toggleStatsAbovePlayer: () => void;
 
   // Name Below Main Player
   isNameBelowPlayerActive: boolean;
   showNameBelowPlayer: () => void;
   hideNameBelowPlayer: () => void;
-  toggleNameBelowPlayer: () => void
+  toggleNameBelowPlayer: () => void;
 
   // Options Modal
   isOptionsMenuOpen: boolean;
   showOptionsMenu: () => void;
   hideOptionsMenu: () => void;
+
+  // Refs
 }
 
 const usePageStore = create<State>((set) => ({
@@ -66,20 +69,26 @@ const usePageStore = create<State>((set) => ({
   // Show Page Stuff
   // Stats Above Main Player
   isStatsAbovePlayerActive: false,
-  showStatsAbovePlayer: () => set(() => ({ isStatsAbovePlayerActive: true })),
-  hideStatsAbovePlayer: () => set(() => ({ isStatsAbovePlayerActive: false })),
-  toggleStatsAbovePlayer: () => set((state) => ({ isStatsAbovePlayerActive: !state.isStatsAbovePlayerActive })),
+  showStatsAbovePlayer: () => set({ isStatsAbovePlayerActive: true }),
+  hideStatsAbovePlayer: () => set({ isStatsAbovePlayerActive: false }),
+  toggleStatsAbovePlayer: () =>
+    set((state) => ({
+      isStatsAbovePlayerActive: !state.isStatsAbovePlayerActive,
+    })),
 
   // Name Below Main Player
   isNameBelowPlayerActive: false,
-  showNameBelowPlayer: () => set(() => ({ isNameBelowPlayerActive: true })),
-  hideNameBelowPlayer: () => set(() => ({ isNameBelowPlayerActive: false })),
-  toggleNameBelowPlayer: () => set((state) => ({ isNameBelowPlayerActive: !state.isNameBelowPlayerActive })),
+  showNameBelowPlayer: () => set({ isNameBelowPlayerActive: true }),
+  hideNameBelowPlayer: () => set({ isNameBelowPlayerActive: false }),
+  toggleNameBelowPlayer: () =>
+    set((state) => ({
+      isNameBelowPlayerActive: !state.isNameBelowPlayerActive,
+    })),
 
   // Options Modal
   isOptionsMenuOpen: false,
-  showOptionsMenu: () => set(() => ({ isOptionsMenuOpen: true })),
-  hideOptionsMenu: () => set(() => ({ isOptionsMenuOpen: false })),
+  showOptionsMenu: () => set({ isOptionsMenuOpen: true }),
+  hideOptionsMenu: () => set({ isOptionsMenuOpen: false }),
 }));
 
 export default usePageStore

@@ -88,7 +88,6 @@ const Zeny = ({ value }: { value: number }) => {
 
 export const BasicInfo = () => {
   const page = usePageStore((state) => state);
-
   const { name, job, baseLevel, baseExp, jobLevel, jobExp } = useGameStore(
     (state) => state.current.mainCharacter
   );

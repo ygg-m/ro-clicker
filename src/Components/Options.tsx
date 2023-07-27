@@ -4,20 +4,19 @@ import { MenuHeader } from "./MenuHeader";
 export const Options = () => {
   const page = usePageStore((state) => state);
 
-  const MainChar_ShowStatsAbove = () => {};
-
   return (
     <>
       {page.isOptionsMenuOpen && (
         <dialog
-          className="z-[100] min-w-[20rem] rounded bg-white p-0 shadow-xl outline outline-1 outline-neutral"
           open
+          className="bottom-0 top-0 z-[100] min-w-[20rem] overflow-hidden rounded-lg bg-white p-0 shadow-xl outline outline-1 outline-neutral"
         >
           <MenuHeader name="Options" closeButton={page.hideOptionsMenu} />
           <div className="grid p-1">
             <div className="grid">
               <span>Main Character</span>
               {/*  */}
+              {/* Show HP and SP above Character  */}
               <div className="form-control rounded-full px-2 duration-200 hover:bg-gray-100">
                 <label className="label cursor-pointer">
                   <span className="text-sm">
@@ -32,6 +31,7 @@ export const Options = () => {
                 </label>
               </div>
               {/*  */}
+              {/* Show name below Character */}
               <div className="form-control rounded-full px-2 duration-200 hover:bg-gray-100">
                 <label className="label cursor-pointer">
                   <span className="text-sm">Show name below Character</span>
@@ -43,6 +43,8 @@ export const Options = () => {
                   />
                 </label>
               </div>
+              {/*  */}
+              {/*  */}
             </div>
           </div>
         </dialog>
