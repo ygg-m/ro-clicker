@@ -10,14 +10,27 @@ interface DetailWindowData {
 };
 
 interface State {
+  // items detail window
   detailWindows: DetailWindowData[];
-  handleDetailWindow: (e: React.MouseEvent,
+  handleDetailWindow: (
+    e: React.MouseEvent,
     equipData?: EquipmentSlotTypes,
-    itemData?: ItemTypes) => void;
+    itemData?: ItemTypes
+  ) => void;
   handleCloseDetailWindow: (index: number) => void;
+
+  // show page stuff
+  isStatsAbovePlayerActive: boolean;
+  showStatsAbovePlayer: () => void;
+  hideStatsAbovePlayer: () => void;
+
+  isNameBelowPlayerActive: boolean;
+  showNameBelowPlayer: () => void;
+  hideNameBelowPlayer: () => void;
 }
 
 const usePageStore = create<State>((set) => ({
+  // item detail window
   detailWindows: [],
   handleDetailWindow: (
     e: React.MouseEvent,
@@ -40,6 +53,15 @@ const usePageStore = create<State>((set) => ({
       detailWindows: state.detailWindows.filter((_, i) => i !== index),
     }));
   },
+
+  // show page stuff
+  isStatsAbovePlayerActive: false,
+  showStatsAbovePlayer: () => set(() => ({ isStatsAbovePlayerActive: true })),
+  hideStatsAbovePlayer: () => set(() => ({ isStatsAbovePlayerActive: false })),
+
+  isNameBelowPlayerActive: false,
+  showNameBelowPlayer: () => set(() => ({ isNameBelowPlayerActive: true })),
+  hideNameBelowPlayer: () => set(() => ({ isNameBelowPlayerActive: false })),
 }));
 
 export default usePageStore

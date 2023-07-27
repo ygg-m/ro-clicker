@@ -13,8 +13,6 @@ function App() {
   const game = useGameStore((state) => state);
   const page = usePageStore(state => state)
 
-  console.log(game.map.data)
-
   return (
     <div className="grid grid-cols-[28rem_1fr]">
       {page.detailWindows.map((window, i) =>
