@@ -39,7 +39,7 @@ export const Player = () => {
       </div>
       <div
         className={`place-items-centerp-2 grid h-32 w-32 overflow-hidden duration-200 ${
-          isHovered || showStats ? "brightness-125" : ""
+          isHovered ? "brightness-125" : ""
         }`}
       >
         <img
