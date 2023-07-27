@@ -1,4 +1,5 @@
-import { useGame } from "@/Context/GameContext/GameContext";
+import useGameStore from "@/Stores/game";
+import usePageStore from "@/Stores/page";
 import { EquipmentSlotTypes } from "@/Types/Character/Equipment";
 import { DraggableWindow } from "./DraggableWindow";
 
@@ -30,7 +31,7 @@ const EmptySlot = ({ name }: { name: string }) => (
 );
 
 const EquipmentSlot = ({ name, equipment }: EquipmentSlotProps) => {
-  const { handleDetailWindow } = useGame();
+  const { handleDetailWindow } = usePageStore(state => state);
 
   if (!equipment) return <EmptySlot name={name} />;
 
@@ -60,7 +61,7 @@ const EquipmentSlot = ({ name, equipment }: EquipmentSlotProps) => {
 };
 
 export const Equipment = () => {
-  const { handR, body } = useGame().current.character.equipment;
+  const { handR, body } = useGameStore(state => state.current.mainCharacter.equipment)
 
   return (
     <DraggableWindow title="Equipment" originX={0} originY={450}>

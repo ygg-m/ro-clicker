@@ -23,7 +23,7 @@ export const DetailWindow = ({
       {equipData ? <EquipmentDetailWindow data={equipData} /> : <></>}
       <button
         onClick={onClose}
-        className="bg-menu-header-button absolute right-1 top-1 grid h-3 w-3 place-items-center rounded-full outline outline-1 outline-gray-500 duration-100 hover:text-gray-50 hover:outline-gray-50"
+        className="bg-menu-header-button absolute right-1 top-1 grid h-3 w-3 place-items-center rounded-full outline outline-1 outline-gray-500 duration-100 hover:text-blue-50"
       >
         <CloseIcon className="h-3 w-3" />
       </button>
@@ -60,7 +60,7 @@ const EquipmentDetailWindow = ({ data }: { data: EquipmentSlotTypes }) => {
 
   return (
     <div className="grid gap-2">
-      <div className="z-0 grid min-h-[280px] w-full max-w-[280px] grid-cols-[87px_1fr] rounded border border-gray-400 bg-gray-50 text-sm text-gray-800 shadow-2xl outline outline-2 outline-gray-50 pb-4">
+      <div className="z-0 pr-1 grid min-h-[280px] w-full max-w-[280px] grid-cols-[87px_1fr] rounded border border-gray-400 bg-gray-50 text-sm text-gray-800 shadow-2xl outline outline-2 outline-gray-50 pb-4">
         <img
           src={portrait}
           alt=""
@@ -93,7 +93,7 @@ const EquipmentDetailWindow = ({ data }: { data: EquipmentSlotTypes }) => {
       </div>
 
       {cardSlots > 0 && (
-        <div className="flex rounded border border-gray-400 bg-gray-50 px-1 text-sm text-gray-800 shadow-2xl outline outline-2 outline-gray-50">
+        <div className="z-10 flex rounded border border-gray-400 bg-gray-50 px-1 text-sm text-gray-800 shadow-2xl outline outline-2 outline-gray-50">
           {cards.length > 0 && <></>}
           <EmptyCardslots cardSlots={cardSlots}/>
         </div>

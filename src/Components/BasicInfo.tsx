@@ -1,10 +1,9 @@
-import { useGame } from "@/Context/GameContext/GameContext";
 import { baseExpTable, firstJobExpTable } from "@/Data/ExperienceTables";
 import { jobList } from "@/Data/Jobs";
+import useGameStore from "@/Stores/game";
 import { JobData } from "@/Types/Job";
 import { DraggableWindow } from "./DraggableWindow";
 import { GrayButton } from "./GrayButton";
-import { MenuHeader } from "./MenuHeader";
 
 interface ParameterProps {
   name: string;
@@ -87,7 +86,7 @@ const Zeny = ({ value }: { value: number }) => {
 
 export const BasicInfo = () => {
   const { name, job, baseLevel, baseExp, jobLevel, jobExp } =
-    useGame().current.character;
+    useGameStore(state => state.current.mainCharacter)
   const {
     healthPoints,
     spiritPoints,
@@ -96,7 +95,7 @@ export const BasicInfo = () => {
     weight,
     totalWeight,
     zeny,
-  } = useGame().current.character.stats.baseStats;
+  } = useGameStore(state => state.current.mainCharacter.stats.baseStats)
 
   const { name: jobName } =
     (jobList.find((e) => e.id === job) as JobData) || "Unknown";

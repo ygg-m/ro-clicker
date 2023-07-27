@@ -25,17 +25,17 @@ export const MenuHeader = ({
       onMouseUp={onMouseUp}
     >
       <div className="flex items-center gap-2">
-        <div className="bg-menu-header-button grid h-4 w-4 cursor-pointer place-items-center rounded-full outline outline-1 outline-gray-600 duration-100 hover:text-gray-50 hover:outline-gray-50">
+        <div className="bg-menu-header-button grid h-4 w-4 cursor-pointer place-items-center rounded-full outline outline-1 outline-gray-600 duration-100 hover:text-blue-50">
           <QuestionIcon className="h-3 w-3" />
         </div>
         {name}
       </div>
 
       <div className="flex items-center gap-2">
-        <div className="bg-menu-header-button grid h-4 w-4 cursor-pointer place-items-center rounded-full outline outline-1 outline-gray-600 duration-100 hover:text-gray-50 hover:outline-gray-50">
+        <div className="bg-menu-header-button grid h-4 w-4 cursor-pointer place-items-center rounded-full outline outline-1 outline-gray-600 duration-100 hover:text-blue-50">
           <MinusIcon className="h-3 w-3" />
         </div>
-        <div className="bg-menu-header-button grid h-4 w-4 cursor-pointer place-items-center rounded-full outline outline-1 outline-gray-600 duration-100 hover:text-gray-50 hover:outline-gray-50">
+        <div className="bg-menu-header-button grid h-4 w-4 cursor-pointer place-items-center rounded-full outline outline-1 outline-gray-600 duration-100 hover:text-blue-50">
           <CloseIcon className="h-3 w-3" />
         </div>
       </div>

@@ -5,40 +5,23 @@ import { Equipment } from "./Components/Equipment";
 import { Logger } from "./Components/Logger";
 import { Player } from "./Components/Player";
 import { Status } from "./Components/Status";
-import { useGame } from "./Context/GameContext/GameContext";
-import useMainCharacterStore from "./Stores/mainCharacter";
+import useGameStore from "@/Stores/game";
+import { targetList } from "@/Data/EnemyList";
+import usePageStore from "./Stores/page";
 
 function App() {
-  const {
-    click,
-    count,
-    current,
-    handleClickerButton,
-    powerUpClick,
-    detailWindows,
-    handleCloseDetailWindow,
-    basicAttack,
-    logs,
-    updateStats,
-  } = useGame();
-
-  const mainChracter = useMainCharacterStore(state => state.mainCharacter)
-
+  const game = useGameStore((state) => state);
+  const page = usePageStore(state => state)
 
   return (
     <div className="grid grid-cols-2">
-      <BasicInfo />
-      <Status />
-      <Equipment />
-      <div className="z-0 flex min-h-screen flex-col items-center justify-center overflow-hidden">
-        <button onClick={() => updateStats()}>update</button>
-        {detailWindows.map((window, i) =>
+      {page.detailWindows.map((window, i) =>
           window.equipData ? (
             <DetailWindow
               key={i}
               x={window.x}
               y={window.y}
-              onClose={() => handleCloseDetailWindow(i)}
+              onClose={() => page.handleCloseDetailWindow(i)}
               equipData={window.equipData}
             />
           ) : (
@@ -46,17 +29,23 @@ function App() {
               key={i}
               x={window.x}
               y={window.y}
-              onClose={() => handleCloseDetailWindow(i)}
+              onClose={() => page.handleCloseDetailWindow(i)}
               itemData={window.itemData}
             />
           )
         )}
+      <BasicInfo />
+      <Status />
+      <Equipment />
+      <div className="z-10 flex min-h-screen flex-col items-center justify-center overflow-hidden">
+        <button onClick={() => game.updateStats()}>update</button>
+        
 
         <Logger />
 
         <div className="flex gap-2">
           <Player />
-          <div onClick={() => basicAttack(5)}>
+          <div onClick={() => game.basicAttack()}>
             <Enemy />
           </div>
         </div>
@@ -64,11 +53,17 @@ function App() {
         <div className="divider" />
 
         <div className="flex gap-2">
-          <button className="btn" onClick={() => handleClickerButton()}>
-            Clicker
+          <button
+            className="btn"
+            onClick={() => game.setMainTarget(targetList[0])}
+          >
+            Poring
           </button>
-          <button className="btn" onClick={() => powerUpClick(1)}>
-            Power Up
+          <button
+            className="btn"
+            onClick={() => game.setMainTarget(targetList[1])}
+          >
+            Fabre
           </button>
         </div>
 
@@ -76,36 +71,22 @@ function App() {
 
         <div className="grid place-items-center">
           <span>Current Stats</span>
-          <div className="grid grid-cols-3 gap-6">
-            <div className="grid bg-gray-900 p-3">
-              <span className="opacity-50">Character</span>
-              <span>Name: {current.character.name}</span>
-              <span>Base Level: {current.character.baseLevel}</span>
-              <span>Job Level: {current.character.jobLevel}</span>
-              <span>HP: {current.target.healthPoints}</span>
-            </div>
+          <div className="grid grid-cols-2 gap-6">
             <div className="grid bg-gray-900 p-3">
               <span className="opacity-50">Enemy</span>
 
-              <span>ID: {current.target.id}</span>
-              <span>HP: {current.target.healthPoints}</span>
+              <span>ID: {game.target.current.id}</span>
+              <span>HP: {game.target.current.hp}</span>
             </div>
+
             <div className="grid bg-gray-900 p-3">
               <span className="opacity-50">Map</span>
 
-              <span>ID: {current.map.id}</span>
-              <span>HP: {current.map.enemiesDefeated}</span>
+              <span>ID: {game.map.id}</span>
+              <span>Defeated: {game.map.enemiesDefeated}</span>
             </div>
           </div>
         </div>
-
-        <div className="divider" />
-
-        <div>Points: {count.points}</div>
-        <div>Click: {count.clicks}</div>
-
-        <div className="divider" />
-        <div>Click Power: {click.power}</div>
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { GameProvider } from "./Context/GameContext/GameContext";
 import "./Styles/index.css";
 
 const root = ReactDOM.createRoot(
@@ -11,9 +10,7 @@ const root = ReactDOM.createRoot(
 // strict mode removed to prevent double render
 {/* <React.StrictMode> */}
 root.render(
-    <GameProvider>
       <App />
-    </GameProvider>
 );
   {/* </React.StrictMode> */}
 

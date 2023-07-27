@@ -1,10 +1,11 @@
 import { v4 as uuid } from "uuid";
 import { useRef, useEffect } from "react";
-import { useGame } from "@/Context/GameContext/GameContext";
 import { formatTime } from "@/Utils/formatTime";
+import useGameStore from "@/Stores/game";
 
 export const Logger = () => {
-  const { logs } = useGame();
+  const logs = useGameStore((state) => state.logs);
+
   const logRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

@@ -1,7 +1,6 @@
 import { ArrowIcon } from "@/Assets/UI";
-import { useGame } from "@/Context/GameContext/GameContext";
 import { getBaseStatCost } from "@/Helpers/getBaseStatCost";
-import { useEffect } from "react";
+import useGameStore from "@/Stores/game";
 import { DraggableWindow } from "./DraggableWindow";
 
 interface BaseStatProps {
@@ -12,7 +11,7 @@ interface BaseStatProps {
 
 const BaseStat = ({ name, value, bonusValue }: BaseStatProps) => {
   const levelUpCost = getBaseStatCost(value);
-  const { statPoints } = useGame().current.character;
+  const { statPoints } = useGameStore((state) => state.mainCharacter);
   const levelUpAvailable = statPoints > levelUpCost;
 
   return (
@@ -56,7 +55,7 @@ const SubStat = ({ name, value, bonusValue }: SubStatProps) => {
 };
 
 export const Status = () => {
-  const { mainStats, sideStats } = useGame().current.character.stats;
+  const { mainStats, sideStats } = useGameStore(state => state.current.mainCharacter.stats)
   const { strength, agility, vitality, intelligence, dexterity, luck, bonus } =
     mainStats;
   const {

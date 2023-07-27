@@ -33,3 +33,8 @@ export interface DetailWindowData {
 export interface DetailData {
 
 }
+
+export interface MapTypes {
+  id: number;
+  enemiesDefeated: number;
+}
