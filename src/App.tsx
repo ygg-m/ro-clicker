@@ -9,46 +9,49 @@ import useGameStore from "@/Stores/game";
 import { targetList } from "@/Data/EnemyList";
 import usePageStore from "./Stores/page";
 import { useEffect } from "react";
+import { Options } from "./Components/Options";
 
 function App() {
   const game = useGameStore((state) => state);
-  const page = usePageStore(state => state)
+  const page = usePageStore((state) => state);
 
   useEffect(() => {
     game.updateStats();
   }, []);
-  
 
   return (
     <div className="grid grid-cols-[28rem_1fr]">
-      {page.detailWindows.map((window, i) =>
-          window.equipData ? (
-            <DetailWindow
-              key={i}
-              x={window.x}
-              y={window.y}
-              onClose={() => page.handleCloseDetailWindow(i)}
-              equipData={window.equipData}
-            />
-          ) : (
-            <DetailWindow
-              key={i}
-              x={window.x}
-              y={window.y}
-              onClose={() => page.handleCloseDetailWindow(i)}
-              itemData={window.itemData}
-            />
-          )
-        )}
+      {/* Page Modals */}
+      <Options />
 
-      <div className="flex flex-col bg-white text-gray-800 z-50">
+      {page.detailWindows.map((window, i) =>
+        window.equipData ? (
+          <DetailWindow
+            key={i}
+            x={window.x}
+            y={window.y}
+            onClose={() => page.handleCloseDetailWindow(i)}
+            equipData={window.equipData}
+          />
+        ) : (
+          <DetailWindow
+            key={i}
+            x={window.x}
+            y={window.y}
+            onClose={() => page.handleCloseDetailWindow(i)}
+            itemData={window.itemData}
+          />
+        )
+      )}
+
+      <div className="z-50 flex flex-col bg-white text-gray-800">
         <BasicInfo />
         <Status />
         <Equipment />
       </div>
 
-      <div className="z-10 relative flex min-h-screen flex-col items-center justify-between overflow-hidden">
-        <div className="flex gap-6 w-full items-center justify-center p-4">
+      <div className="relative z-10 flex min-h-screen flex-col items-center justify-between overflow-hidden">
+        <div className="flex w-full items-center justify-center gap-6 p-4">
           <Player />
           <div onClick={() => game.basicAttack()}>
             <Enemy />
@@ -95,7 +98,10 @@ function App() {
 
         <Logger />
 
-        <img className="absolute -z-10 w-full h-full blur-xl opacity-80 object-cover scale-125" src={game.map.data.image} />
+        <img
+          className="absolute -z-10 h-full w-full scale-125 object-cover opacity-80 blur-xl"
+          src={game.map.data.image}
+        />
       </div>
     </div>
   );

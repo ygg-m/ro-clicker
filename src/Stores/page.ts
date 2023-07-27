@@ -10,7 +10,7 @@ interface DetailWindowData {
 };
 
 interface State {
-  // items detail window
+  // Items Detail Window
   detailWindows: DetailWindowData[];
   handleDetailWindow: (
     e: React.MouseEvent,
@@ -19,18 +19,27 @@ interface State {
   ) => void;
   handleCloseDetailWindow: (index: number) => void;
 
-  // show page stuff
+  // Show Page Stuff
+  // Stats Above Main Player
   isStatsAbovePlayerActive: boolean;
   showStatsAbovePlayer: () => void;
   hideStatsAbovePlayer: () => void;
+  toggleStatsAbovePlayer: () => void
 
+  // Name Below Main Player
   isNameBelowPlayerActive: boolean;
   showNameBelowPlayer: () => void;
   hideNameBelowPlayer: () => void;
+  toggleNameBelowPlayer: () => void
+
+  // Options Modal
+  isOptionsMenuOpen: boolean;
+  showOptionsMenu: () => void;
+  hideOptionsMenu: () => void;
 }
 
 const usePageStore = create<State>((set) => ({
-  // item detail window
+  // Item Details Window
   detailWindows: [],
   handleDetailWindow: (
     e: React.MouseEvent,
@@ -54,14 +63,23 @@ const usePageStore = create<State>((set) => ({
     }));
   },
 
-  // show page stuff
+  // Show Page Stuff
+  // Stats Above Main Player
   isStatsAbovePlayerActive: false,
   showStatsAbovePlayer: () => set(() => ({ isStatsAbovePlayerActive: true })),
   hideStatsAbovePlayer: () => set(() => ({ isStatsAbovePlayerActive: false })),
+  toggleStatsAbovePlayer: () => set((state) => ({ isStatsAbovePlayerActive: !state.isStatsAbovePlayerActive })),
 
+  // Name Below Main Player
   isNameBelowPlayerActive: false,
   showNameBelowPlayer: () => set(() => ({ isNameBelowPlayerActive: true })),
   hideNameBelowPlayer: () => set(() => ({ isNameBelowPlayerActive: false })),
+  toggleNameBelowPlayer: () => set((state) => ({ isNameBelowPlayerActive: !state.isNameBelowPlayerActive })),
+
+  // Options Modal
+  isOptionsMenuOpen: false,
+  showOptionsMenu: () => set(() => ({ isOptionsMenuOpen: true })),
+  hideOptionsMenu: () => set(() => ({ isOptionsMenuOpen: false })),
 }));
 
 export default usePageStore

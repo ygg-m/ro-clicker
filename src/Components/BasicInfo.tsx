@@ -1,6 +1,7 @@
 import { baseExpTable, firstJobExpTable } from "@/Data/ExperienceTables";
 import { jobList } from "@/Data/Jobs";
 import useGameStore from "@/Stores/game";
+import usePageStore from "@/Stores/page";
 import { JobData } from "@/Types/Job";
 import { DraggableWindow } from "./DraggableWindow";
 import { GrayButton } from "./GrayButton";
@@ -86,8 +87,11 @@ const Zeny = ({ value }: { value: number }) => {
 };
 
 export const BasicInfo = () => {
-  const { name, job, baseLevel, baseExp, jobLevel, jobExp } =
-    useGameStore(state => state.current.mainCharacter)
+  const page = usePageStore((state) => state);
+
+  const { name, job, baseLevel, baseExp, jobLevel, jobExp } = useGameStore(
+    (state) => state.current.mainCharacter
+  );
 
   const {
     healthPoints,
@@ -97,7 +101,7 @@ export const BasicInfo = () => {
     weight,
     totalWeight,
     zeny,
-  } = useGameStore(state => state.current.mainCharacter.stats.baseStats)
+  } = useGameStore((state) => state.current.mainCharacter.stats.baseStats);
 
   const { name: jobName } =
     (jobList.find((e) => e.id === job) as JobData) || "Unknown";
@@ -106,9 +110,9 @@ export const BasicInfo = () => {
 
   // <DraggableWindow title="Basic Info" originX={0} originY={0}>
   return (
-      <article className="">
-        <MenuHeader name="Basic Info"/>
-        <div className="grid grid-cols-[1fr_0.5fr]">
+    <article className="">
+      <MenuHeader name="Basic Info" />
+      <div className="grid grid-cols-[1fr_0.5fr]">
         <div className="flex flex-col">
           <div className="grid grid-cols-[0.5fr_1fr] gap-2 p-2 px-3">
             <div className="flex flex-col text-sm">
@@ -154,7 +158,7 @@ export const BasicInfo = () => {
         </div>
         <div className="bg-lines grid grid-cols-2 gap-2 border-l border-gray-400 p-2 text-sm">
           <GrayButton name="status" />
-          <GrayButton name="option" />
+          <GrayButton name="option" onClick={() => page.showOptionsMenu()} />
           <GrayButton name="items" />
           <GrayButton name="equip" />
           <GrayButton name="skill" />
@@ -162,8 +166,8 @@ export const BasicInfo = () => {
           <GrayButton name="comm" />
           <GrayButton name="friend" />
         </div>
-        </div>
-      </article>
+      </div>
+    </article>
   );
   // </DraggableWindow>
 };
