@@ -8,10 +8,16 @@ import { Status } from "./Components/Status";
 import useGameStore from "@/Stores/game";
 import { targetList } from "@/Data/EnemyList";
 import usePageStore from "./Stores/page";
+import { useEffect } from "react";
 
 function App() {
   const game = useGameStore((state) => state);
   const page = usePageStore(state => state)
+
+  useEffect(() => {
+    game.updateStats();
+  }, []);
+  
 
   return (
     <div className="grid grid-cols-[28rem_1fr]">
