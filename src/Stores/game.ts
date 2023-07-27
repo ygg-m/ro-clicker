@@ -60,7 +60,8 @@ const useGameStore = create<State>()(
       // actions
       basicAttack: () => {
         const randomNumber = Math.random() * (0.2 - -0.8) + -0.8;
-        const attack = useGameStore.getState().mainCharacter.stats.sideStats.attack;
+        const attack =
+          useGameStore.getState().mainCharacter.stats.sideStats.attack;
         const randomAttack = Math.floor(attack + attack * randomNumber);
 
         useGameStore.getState().removeTargetHP(randomAttack);
@@ -139,9 +140,7 @@ const useGameStore = create<State>()(
 
       // Map
       map: { id: 0, data: mapList[0], enemiesDefeated: 0 },
-      setMap: (newMap) => {
-
-      },
+      setMap: (newMap) => {},
 
       // Utils
       logs: [],
@@ -150,16 +149,15 @@ const useGameStore = create<State>()(
           timestamp: new Date(),
           message,
         };
-        set((state) =>  ({ logs: [...state.logs, entry].slice(-150) })
-        
-        );
+        set((state) => ({ logs: [...state.logs, entry].slice(-150) }));
       },
     }),
-    { name: "store",
-    // filters persisted states
-    partialize: (state) => 
+    {
+      name: "game",
+      // filters persisted states
+      partialize: (state) =>
         Object.fromEntries(
-          Object.entries(state).filter(([key]) => !['logs'].includes(key))
+          Object.entries(state).filter(([key]) => !["logs"].includes(key))
         ),
     }
   )

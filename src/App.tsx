@@ -51,11 +51,9 @@ function App() {
       </div>
 
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-between overflow-hidden">
-        <div className="flex w-full items-center justify-center gap-6 p-4">
+        <div className="flex h-60 w-full items-center justify-center gap-6 p-4">
           <Player />
-          <div onClick={() => game.basicAttack()}>
-            <Enemy />
-          </div>
+          <Enemy />
         </div>
 
         <div className="divider" />

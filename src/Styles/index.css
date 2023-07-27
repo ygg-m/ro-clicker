@@ -16,6 +16,10 @@ button {
   cursor: url('../Assets/Cursor/link_select.gif'), auto;
 }
 
+attack {
+  cursor: url('../Assets/Cursor/attack.gif'), auto;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

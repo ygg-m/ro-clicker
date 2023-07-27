@@ -157,7 +157,7 @@ export const BasicInfo = () => {
         </div>
         <div className="bg-lines grid grid-cols-2 gap-2 border-l border-gray-400 p-2 text-sm">
           <GrayButton name="status" />
-          <GrayButton name="option" onClick={() => page.showOptionsMenu()} />
+          <GrayButton name="option" onClick={() => page.toggleOptionsMenu()} />
           <GrayButton name="items" />
           <GrayButton name="equip" />
           <GrayButton name="skill" />

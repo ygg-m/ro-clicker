@@ -11,7 +11,7 @@ export const Options = () => {
           open
           className="bottom-0 top-0 z-[100] min-w-[20rem] overflow-hidden rounded-lg bg-white p-0 shadow-xl outline outline-1 outline-neutral"
         >
-          <MenuHeader name="Options" closeButton={page.hideOptionsMenu} />
+          <MenuHeader name="Options" closeButton={page.toggleOptionsMenu} />
           <div className="grid p-1">
             <div className="grid">
               <span>Main Character</span>

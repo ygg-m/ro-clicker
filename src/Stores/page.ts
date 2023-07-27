@@ -36,8 +36,7 @@ interface State {
 
   // Options Modal
   isOptionsMenuOpen: boolean;
-  showOptionsMenu: () => void;
-  hideOptionsMenu: () => void;
+  toggleOptionsMenu: () => void;
 
   // Refs
 }
@@ -92,8 +91,8 @@ const usePageStore = create<State>()(
 
       // Options Modal
       isOptionsMenuOpen: false,
-      showOptionsMenu: () => set({ isOptionsMenuOpen: true }),
-      hideOptionsMenu: () => set({ isOptionsMenuOpen: false }),
+      toggleOptionsMenu: () =>
+        set((state) => ({ isOptionsMenuOpen: !state.isOptionsMenuOpen })),
     }),
     { name: "options" }
   )
